@@ -38,3 +38,47 @@ A Logger in programming, particularly in frameworks like Java's Log4j or SLF4J, 
 about an application's execution. These messages, known as logs, can provide information for debugging, monitoring, 
 or tracking an application's behavior.
 
+
+https://reflectoring.io/spring-boot-exception-handling/
+
+
+### @ResponseStatus
+As the name suggests, @ResponseStatus allows us to modify the HTTP status of our response. It can be applied in the following places:
+
+* On the exception class itself
+* Along with the @ExceptionHandler annotation on methods
+* Along with the @ControllerAdvice annotation on classes
+
+```
+@ResponseStatus(value = HttpStatus.NOT_FOUND)
+```
+
+### @ExceptionHandler
+The @ExceptionHandler annotation gives us a lot of flexibility in terms of handling exceptions.
+
+
+Now, let’s finalize an error response payload for our APIs. In case of any error, clients usually expect two things:
+
+* An error code that tells the client what kind of error it is. Error codes can be used by clients in their code to drive some business logic based on it. Usually, error codes are standard HTTP status codes, but I have also seen APIs returning custom errors code likes E001.
+
+* An additional human-readable message which gives more information on the error and even some hints on how to fix them or a link to API docs.
+
+
+### @ResponseEntityExceptionHandler
+
+ResponseEntityExceptionHandler is a convenient base class for controller advice classes. It provides exception handlers for internal Spring exceptions. If we don’t extend it, then all the exceptions will be redirected to DefaultHandlerExceptionResolver which returns a ModelAndView object.
+
+Handling NoHandlerFoundException Requires a Few Extra Steps
+This exception occurs when you try to call an API that doesn't exist in the system. Despite us implementing its handler via ResponseEntityExceptionHandler class the exception is redirected to DefaultHandlerExceptionResolver.
+
+### Some Points to Keep in Mind when Using @ControllerAdvice
+
+* To keep things simple always have only one controller advice class in the project. It’s good to have a single repository of all the exceptions in the application. In case you create multiple controller advice, try to utilize the basePackages or annotations properties to make it clear what controllers it’s going to advise.
+* Spring can process controller advice classes in any order unless we have annotated it with the @Order annotation. So, be mindful when you write a catch-all handler if you have more than one controller advice. Especially when you have not specified basePackages or annotations in the annotation.
+
+
+@RequestParam binds the value of the query string parameter name into the name parameter of the greeting() method. If the name parameter is absent in the request, the defaultValue of World is used.
+
+The implementation of the method body creates and returns a new Greeting object with id and content attributes based on the next value from the counter and formats the given name by using the greeting template.
+
+A key difference between a traditional MVC controller and the RESTful web service controller shown earlier is the way that the HTTP response body is created. Rather than relying on a view technology to perform server-side rendering of the greeting data to HTML, this RESTful web service controller populates and returns a Greeting object. The object data will be written directly to the HTTP response as JSON.
