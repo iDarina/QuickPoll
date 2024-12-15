@@ -1,10 +1,10 @@
 package com.apress.domain;
 
-import jakarta.persistence.*;
-import jakarta.validation.constraints.NotEmpty;
-import jakarta.validation.constraints.Size;
-
 import java.util.Set;
+
+import jakarta.persistence.*;
+import jakarta.validation.constraints.Size;
+import org.hibernate.validator.constraints.NotEmpty;
 
 @Entity
 public class Poll {
@@ -22,7 +22,7 @@ public class Poll {
     @JoinColumn(name="POLL_ID")
     @OrderBy
     @Size(min=2, max = 6)
-    private Set<Option> options;
+    private Set<Options> options;
 
     public Long getId() {
         return id;
@@ -36,10 +36,10 @@ public class Poll {
     public void setQuestion(String question) {
         this.question = question;
     }
-    public Set<Option> getOptions() {
+    public Set<Options> getOptions() {
         return options;
     }
-    public void setOptions(Set<Option> options) {
+    public void setOptions(Set<Options> options) {
         this.options = options;
     }
 
@@ -49,3 +49,4 @@ public class Poll {
     }
 
 }
+

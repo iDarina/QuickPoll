@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 
 @Entity
 public class Vote {
+
     @Id
     @GeneratedValue
     @Column(name="VOTE_ID")
@@ -11,24 +12,24 @@ public class Vote {
 
     @ManyToOne
     @JoinColumn(name="OPTION_ID")
-    private Option option;
-
-    public Vote() {
-    }
+    private Options options;
 
     public Long getId() {
         return id;
     }
-
     public void setId(Long id) {
         this.id = id;
     }
-
-    public Option getOption() {
-        return option;
+    public Options getOption() {
+        return options;
+    }
+    public void setOption(Options option) {
+        this.options = option;
     }
 
-    public void setOption(Option option) {
-        this.option = option;
+    @Override
+    public String toString() {
+        return getId() + ", " + getOption();
     }
+
 }

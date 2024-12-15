@@ -1,6 +1,7 @@
 package com.apress.dto.error;
 
 public class ValidationError {
+
     private String code;
     private String message;
 

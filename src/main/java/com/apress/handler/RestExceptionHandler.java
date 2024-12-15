@@ -1,11 +1,8 @@
 package com.apress.handler;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-
-import javax.inject.Inject;
-
+import com.apress.dto.error.ErrorDetail;
+import com.apress.dto.error.ValidationError;
+import com.apress.exception.ResourceNotFoundException;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
@@ -20,12 +17,12 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
-import com.apress.dto.error.ErrorDetail;
-import com.apress.dto.error.ValidationError;
-import com.apress.exception.ResourceNotFoundException;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
 @ControllerAdvice
-public class RestExceptionHandler extends ResponseEntityExceptionHandler  {
+public class RestExceptionHandler extends ResponseEntityExceptionHandler {
 
     @Autowired
     private MessageSource messageSource;
@@ -88,3 +85,4 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler  {
     }
 
 }
+
